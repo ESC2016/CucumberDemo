@@ -276,6 +276,6 @@ public class adactinSteps {
     @Then("^I should be on the search page$")
     public void iShouldBeOnTheSearchPage() throws Throwable {
     //assertEquals("Search Hotel", webDriver.getTitle());
-        Assert.assertTrue(webDriver.getTitle().contentEquals("Hotel"));
+        Assert.assertEquals(true, webDriver.getTitle().contains("hotel"));
     }
 }
