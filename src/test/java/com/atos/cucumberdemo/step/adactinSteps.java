@@ -1,6 +1,7 @@
 package com.atos.cucumberdemo.step;
 
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.openqa.selenium.By.*;
 
 /**
  * Created by Vincent Free on 27-3-2015.
@@ -44,28 +46,28 @@ public class adactinSteps {
 
     @When("^I log in with my credentials$")
     public void I_log_in_with_my_credentials() throws Throwable {
-        webDriver.findElement(By.id("username")).sendKeys("TestlabCucumberDemo");
-        webDriver.findElement(By.id("password")).sendKeys("testlabcucumberdemo");
-        webDriver.findElement(By.id("login")).click();
+        webDriver.findElement(id("username")).sendKeys("TestlabCucumberDemo");
+        webDriver.findElement(id("password")).sendKeys("testlabcucumberdemo");
+        webDriver.findElement(id("login")).click();
     }
 
     @Then("^I am logged in$")
     public void I_am_logged_in() throws Throwable {
-        WebElement element = webDriver.findElement(By.id("username_show"));
+        WebElement element = webDriver.findElement(id("username_show"));
         String WelcomeText = "Hello TestlabCucumberDemo!";
         WelcomeText.equals(element.getText());
     }
 
     @When("^I log in with the wrong credentials$")
     public void I_log_in_with_the_wrong_credentials() throws Throwable {
-        webDriver.findElement(By.id("username")).sendKeys("TestlabFout");
-        webDriver.findElement(By.id("password")).sendKeys("Foutje");
-        webDriver.findElement(By.id("login")).click();
+        webDriver.findElement(id("username")).sendKeys("TestlabFout");
+        webDriver.findElement(id("password")).sendKeys("Foutje");
+        webDriver.findElement(id("login")).click();
     }
 
     @Then("^I should get a message$")
     public void I_should_get_a_message() {
-        WebElement element = webDriver.findElement(By.className("auth_error"));
+        WebElement element = webDriver.findElement(className("auth_error"));
         String InvalidLogin = "Invalid1 Login Details";
         InvalidLogin.equals(element.getText());
     }
@@ -80,7 +82,7 @@ public class adactinSteps {
 
     @And("^the day that I check in is \"([^\"]*)\" days from now$")
     public void the_day_that_I_check_in_is_days_from_now(int days) throws Throwable {
-        WebElement element = webDriver.findElement(By.xpath("//input[@id='datepick_in']"));
+        WebElement element = webDriver.findElement(xpath("//input[@id='datepick_in']"));
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         java.util.Date mydate = format.parse(today);
@@ -93,7 +95,7 @@ public class adactinSteps {
 
     @And("^the day that I check out is \"([^\"]*)\" days from now$")
     public void the_day_that_I_check_out_is_days_from_now(int days) throws Throwable {
-        WebElement element = webDriver.findElement(By.xpath("//input[@id='datepick_out']"));
+        WebElement element = webDriver.findElement(xpath("//input[@id='datepick_out']"));
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         java.util.Date mydate = format.parse(today);
@@ -106,10 +108,10 @@ public class adactinSteps {
 
     @Then("^the search results in an error message$")
     public void the_search_results_in_an_error_message() throws Throwable {
-        webDriver.findElement(By.id("Submit")).click();
+        webDriver.findElement(id("Submit")).click();
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkin_span")));
-        WebElement element1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkout_span")));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(id("checkin_span")));
+        WebElement element1 = wait.until(ExpectedConditions.visibilityOfElementLocated(id("checkout_span")));
         assertEquals("Check-In Date shall be before than Check-Out Date", element.getText());
         assertEquals("Check-Out Date shall be after than Check-In Date", element1.getText());
     }
@@ -117,17 +119,17 @@ public class adactinSteps {
     @When("^I set the location to \"([^\"]*)\"$")
     public void I_set_the_location_to(String location) throws Throwable {
         this.results.add(location);
-        WebElement element = webDriver.findElement(By.id("location"));
+        WebElement element = webDriver.findElement(id("location"));
         element.click();
         //element.findElement(By.xpath("//select[@id='location']/option[text()='"+location+"']")).click();
-        element.findElement(By.id("location")).click();
+        element.findElement(id("location")).click();
         element.sendKeys(location);
     }
 
     @And("^I select Hotel \"([^\"]*)\"$")
     public void I_select_Hotel(String hotels) throws Throwable {
         this.results.add(hotels);
-        WebElement element = webDriver.findElement(By.id("hotels"));
+        WebElement element = webDriver.findElement(id("hotels"));
         element.click();
         element.sendKeys(hotels);
     }
@@ -135,7 +137,7 @@ public class adactinSteps {
     @And("^I select Room type \"([^\"]*)\"$")
     public void I_select_Room_type(String room) throws Throwable {
         this.results.add(room);
-        WebElement element = webDriver.findElement(By.id("room_type"));
+        WebElement element = webDriver.findElement(id("room_type"));
         element.click();
         element.sendKeys(room);
     }
@@ -144,7 +146,7 @@ public class adactinSteps {
     public void I_select_the_number_of_rooms(String room) throws Throwable {
         this.results.add(room + " Rooms");
         this.no_rooms = Integer.parseInt(room);
-        WebElement element = webDriver.findElement(By.id("room_nos"));
+        WebElement element = webDriver.findElement(id("room_nos"));
         if (room.equals("1") && (element.getAttribute("value").contains("One") || element.getAttribute("value").contains("1"))) {
 
             //System.out.println("number of rooms would be: "+room);
@@ -158,7 +160,7 @@ public class adactinSteps {
     public void I_select_the_amount_of_adults(String adult) throws Throwable {
         //this.results.add(adult);
         this.adults = Integer.parseInt(adult);
-        WebElement element = webDriver.findElement(By.id("adult_room"));
+        WebElement element = webDriver.findElement(id("adult_room"));
         if (adult.equals("1") && (element.getAttribute("value").contains("One") || element.getAttribute("value").contains("1"))) {
 
             //System.out.println("number of adults: "+adult);
@@ -171,7 +173,7 @@ public class adactinSteps {
     @And("^I select the amount of children \"([^\"]*)\"$")
     public void I_select_the_amount_of_children(String children) throws Throwable {
         //this.results.add(children);
-        WebElement element = webDriver.findElement(By.id("adult_room"));
+        WebElement element = webDriver.findElement(id("adult_room"));
         if (children == "0") {
 
         } else {
@@ -182,21 +184,21 @@ public class adactinSteps {
 
     @Then("^The system should report an error message 'Enter Valid dates'$")
     public void The_system_should_report_an_error_message_Enter_Valid_dates() throws Throwable {
-        webDriver.findElement(By.id("Submit")).click();
+        webDriver.findElement(id("Submit")).click();
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("checkin_span")));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(id("checkin_span")));
         assertEquals("Check-In Date should be either Today or Later Date", element.getText());
     }
 
 
     @Then("^The right hotel should be shown$")
     public void The_right_hotel_should_be_shown() throws Throwable {
-        webDriver.findElement(By.id("Submit")).click();
+        webDriver.findElement(id("Submit")).click();
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
         WebElement element;
-        element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("select_form")));
+        element = wait.until(ExpectedConditions.visibilityOfElementLocated(id("select_form")));
         for (Object object : results) {
-            element = webDriver.findElement(By.xpath("//input[@value='" + object.toString() + "']"));
+            element = webDriver.findElement(xpath("//input[@value='" + object.toString() + "']"));
             //System.out.println(element.getAttribute("value"));
             assertEquals(element.getAttribute("value").toLowerCase(), object.toString().toLowerCase());
 
@@ -206,36 +208,36 @@ public class adactinSteps {
     @And("^The price should be correct$")
     public void The_price_should_be_correct() throws Throwable {
         int price = 125 * adults * no_rooms;
-        WebElement element = webDriver.findElement(By.id("total_price_0"));
+        WebElement element = webDriver.findElement(id("total_price_0"));
         assertEquals("AUD $ " + price + "", element.getAttribute("value"));
         //System.out.println(element.getAttribute("value"));
     }
 
     @And("^I want to logout and verify that I am logged out$")
     public void I_want_to_logout_and_verify_that_I_am_logged_out() throws Throwable {
-        WebElement element = webDriver.findElement(By.xpath("//a[@href='Logout.php']"));
+        WebElement element = webDriver.findElement(xpath("//a[@href='Logout.php']"));
         element.click();
-        element = webDriver.findElement(By.className("reg_success"));
+        element = webDriver.findElement(className("reg_success"));
         assertEquals("You have successfully logged out. Click here to login again", element.getText());
     }
 
     @Given("^I am on the Select Hotel page$")
     public void I_am_on_the_Select_Hotel_page() throws Throwable {
         webDriver.getCurrentUrl().equals("http://adactin.com/HotelAppBuild2/SelectHotel.php");
-        WebElement element = webDriver.findElement(By.className("login_title"));
+        WebElement element = webDriver.findElement(className("login_title"));
         assertEquals("Select Hotel", element.getText());
     }
 
     @When("^I select the first hotel$")
     public void I_select_the_first_hotel() throws Throwable {
-        webDriver.findElement(By.id("radiobutton_0")).click();
-        webDriver.findElement(By.id("continue")).click();
+        webDriver.findElement(id("radiobutton_0")).click();
+        webDriver.findElement(id("continue")).click();
     }
 
     @Then("^The \"([^\"]*)\" page should be shown$")
     public void The_page_should_be_shown(String page) throws Throwable {
         webDriver.getCurrentUrl().equals("http://adactin.com/HotelAppBuild2/BookHotel.php");
-        WebElement element = webDriver.findElement(By.xpath("/html/body/table[2]/tbody/tr[2]/td/form/table/tbody/tr[2]/td[text()]"));
+        WebElement element = webDriver.findElement(xpath("/html/body/table[2]/tbody/tr[2]/td/form/table/tbody/tr[2]/td[text()]"));
         assertEquals(page, element.getText());
     }
 
@@ -252,10 +254,27 @@ public class adactinSteps {
                 newResult.replace("Rooms", "Room(s)");
                 //System.out.println(newResult);
             } else {
-                element = webDriver.findElement(By.xpath("//input[@value='" + object.toString() + "']"));
+                element = webDriver.findElement(xpath("//input[@value='" + object.toString() + "']"));
                 //System.out.println(element.getAttribute("value"));
                 assertEquals(element.getAttribute("value").toLowerCase(), object.toString().toLowerCase());
             }
         }
+    }
+
+    @Given("^I am on the adactin search page$")
+    public void iAmOnTheAdactinSearchPage() throws Throwable {
+        webDriver.getCurrentUrl().equals("http://www.adactin.com/HotelApp/SearchHotel.php");
+    }
+
+    @When("^I click on the Search Hotel button$")
+    public void iClickOnTheSearchHotelButton() throws Throwable {
+        WebElement element = webDriver.findElement(xpath("//a[@href='SearchHotel.php']"));
+        element.click();
+    }
+
+    @Then("^I should be on the search page$")
+    public void iShouldBeOnTheSearchPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }
