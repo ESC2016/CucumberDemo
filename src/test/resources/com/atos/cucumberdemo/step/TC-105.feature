@@ -18,5 +18,5 @@ Feature: TC-105
 
   Scenario: Verify Screen Caption
     Given I am on the adactin search page
-    When I click on the Search Hotel button
-    Then I should be on the search page
+    When I click on the Booked Itinerary button
+    Then I should be on the select page
