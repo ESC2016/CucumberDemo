@@ -285,8 +285,10 @@ public class adactinSteps {
 
     @Then("^I should be on the Select Hotel page$")
     public void iShouldBeOnTheSelectHotelPage() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        String actualTitle = webDriver.getTitle();
+        String expectedTitle = "AdactIn.com - Select Hotel";
+        assertEquals(expectedTitle, actualTitle);
+        //System.out.println(actualTitle);
     }
 
 }
