@@ -19,13 +19,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.By.*;
-
-/**
- * Created by Vincent Free on 27-3-2015.
- */
 
 
 public class adactinSteps {
@@ -35,7 +32,7 @@ public class adactinSteps {
     private int no_rooms;
 
     public adactinSteps(SharedDriver webDriver) {
-        this.webDriver = webDriver; 
+        this.webDriver = webDriver;
         //this.driver = new driver;
     }
 
@@ -264,13 +261,14 @@ public class adactinSteps {
 
     @Given("^I am on the adactin search page$")
     public void iAmOnTheAdactinSearchPage() throws Throwable {
-        webDriver.getCurrentUrl().equals("http://www.adactin.com/HotelApp/SearchHotel.php");
+        //webDriver.getCurrentUrl().equals("http://www.adactin.com/HotelApp/SearchHotel.php");
     }
 
     @When("^I click on the Search Hotel button$")
     public void iClickOnTheSearchHotelButton() throws Throwable {
         WebElement element = webDriver.findElement(xpath("//a[@href='SearchHotel.php']"));
         element.click();
+        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @Then("^I should be on the search page$")
@@ -278,4 +276,17 @@ public class adactinSteps {
     //assertEquals("Search Hotel", webDriver.getTitle());
         Assert.assertEquals(true, webDriver.getTitle().contains("Hotel"));
     }
+
+    @When("^I click on the Booked Itinerary button$")
+    public void iClickOnTheBookedItineraryButton() throws Throwable {
+        WebElement element = webDriver.findElement(xpath("//a[@href='BookedItinerary.php']"));
+        element.click();
+    }
+
+    @Then("^I should be on the Select Hotel page$")
+    public void iShouldBeOnTheSelectHotelPage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
 }

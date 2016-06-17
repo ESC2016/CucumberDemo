@@ -20,3 +20,8 @@ Feature: TC-105
     Given I am on the adactin search page
     When I click on the Search Hotel button
     Then I should be on the search page
+
+  Scenario: Verify Screen Caption Select page
+    Given I am on the adactin search page
+    When I click on the Booked Itinerary button
+    Then I should be on the Select Hotel page
