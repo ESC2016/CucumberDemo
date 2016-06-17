@@ -264,17 +264,20 @@ public class adactinSteps {
         //webDriver.getCurrentUrl().equals("http://www.adactin.com/HotelApp/SearchHotel.php");
     }
 
-    @When("^I click on the Search Hotel button$")
-    public void iClickOnTheSearchHotelButton() throws Throwable {
-        WebElement element = webDriver.findElement(xpath("//a[@href='SearchHotel.php']"));
+    @When("^I click on the Booked Itinerary button$")
+    public void iClickOnTheBookedItineraryButton() throws Throwable {
+        WebElement element = webDriver.findElement(xpath("//a[@href='BookedItinerary.php']"));
         element.click();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Then("^I should be on the search page$")
-    public void iShouldBeOnTheSearchPage() throws Throwable {
+    @Then("^I should be on the select page$")
+    public void iShouldBeOnTheSelectPage() throws Throwable {
     //assertEquals("Search Hotel", webDriver.getTitle());
-        Assert.assertEquals(true, webDriver.getTitle().contains("Hotel"));
+       // Assert.assertEquals(true, webDriver.getTitle().contains("Hotel"));
+        String actualTitle = webDriver.getTitle();
+        String expectedTitle = "AdactIn.com - Select Hotel";
+        Assert.assertEquals(expectedTitle, actualTitle);
     }
 
     @When("^I click on the Booked Itinerary button$")
