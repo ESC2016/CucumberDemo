@@ -264,21 +264,6 @@ public class adactinSteps {
         //webDriver.getCurrentUrl().equals("http://www.adactin.com/HotelApp/SearchHotel.php");
     }
 
-//    @When("^I click on the Booked Itinerary button$")
-//    public void iClickOnTheBookedItineraryButton() throws Throwable {
-//        WebElement element = webDriver.findElement(xpath("//a[@href='BookedItinerary.php']"));
-//        element.click();
-//        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//    }
-//
-//    @Then("^I should be on the select page$")
-//    public void iShouldBeOnTheSelectPage() throws Throwable {
-//    //assertEquals("Search Hotel", webDriver.getTitle());
-//       // Assert.assertEquals(true, webDriver.getTitle().contains("Hotel"));
-//        String actualTitle = webDriver.getTitle();
-//        String expectedTitle = "AdactIn.com - Select Hotel";
-//        Assert.assertEquals(expectedTitle, actualTitle);
-//    }
 
     @When("^I click on the Booked Itinerary button$")
     public void iClickOnTheBookedItineraryButton() throws Throwable {
@@ -288,16 +273,16 @@ public class adactinSteps {
 
     @Then("^I should be on the Select Hotel page$")
     public void iShouldBeOnTheSelectHotelPage() throws Throwable {
-        //String actualTitle = webDriver.getTitle();
-        //String expectedTitle = "AdactIn.com - Select Hotel";
-        //assertEquals(expectedTitle, actualTitle);
-        //System.out.println(actualTitle);
-        if(webDriver.getTitle().contains("AdactIn.com - Select Hotel"))
-            //Pass
-            System.out.println("Page title contains \"AdactIn.com - Select Hotel\" ");
-        else
-            //Fail
-            System.out.println("Page title doesn't contains \"AdactIn.com - Select Hotel\" ");
+        String actualTitle = webDriver.getTitle();
+        String expectedTitle = "AdactIn.com - Select Hotel";
+        assertEquals(expectedTitle, actualTitle);
+        System.out.println(actualTitle);
+//        if(webDriver.getTitle().contains("AdactIn.com - Selct Hotel"))
+//            //Pass
+//            System.out.println("Page title contains \"AdactIn.com - Select Hotel\" ");
+//        else
+//            //Fail
+//            System.out.println("Page title doesn't contains \"AdactIn.com - Select Hotel\" ");
     }
 
 }
