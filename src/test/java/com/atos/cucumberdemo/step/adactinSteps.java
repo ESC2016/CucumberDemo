@@ -292,7 +292,7 @@ public class adactinSteps {
         //String expectedTitle = "AdactIn.com - Select Hotel";
         //assertEquals(expectedTitle, actualTitle);
         //System.out.println(actualTitle);
-        if(webDriver.getTitle().contains("poep"))
+        if(webDriver.getTitle().contains("AdactIn.com - Select Hotel"))
             //Pass
             System.out.println("Page title contains \"AdactIn.com - Select Hotel\" ");
         else
