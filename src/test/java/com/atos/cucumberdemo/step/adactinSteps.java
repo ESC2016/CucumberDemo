@@ -259,6 +259,14 @@ public class adactinSteps {
         }
     }
 
+    @And("^The final price should be total price plus gst$")
+    public void theFinalPriceShouldBeTotalPricePlusGst() throws Throwable {
+        //int price = 125 * adults * no_rooms;
+        WebElement element = webDriver.findElement(id("total_price_dis"));
+        //assertEquals("AUD $ " + price + "", element.getAttribute("value"));
+        System.out.println(element.getAttribute("value"));
+    }
+
     @Given("^I am on the adactin search page$")
     public void iAmOnTheAdactinSearchPage() throws Throwable {
         //webDriver.getCurrentUrl().equals("http://www.adactin.com/HotelApp/SearchHotel.php");
@@ -284,5 +292,4 @@ public class adactinSteps {
 //            //Fail
 //            System.out.println("Page title doesn't contains \"AdactIn.com - Select Hotel\" ");
     }
-
 }
