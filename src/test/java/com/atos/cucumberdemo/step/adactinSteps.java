@@ -292,4 +292,22 @@ public class adactinSteps {
 //            //Fail
 //            System.out.println("Page title doesn't contains \"AdactIn.com - Select Hotel\" ");
     }
+
+    @And("^Verify that data is the same$")
+    public void verifyThatDataIsTheSame() throws Throwable {
+        WebElement hotel_name = webDriver.findElement(By.id("hotel_name_dis"));
+        assertEquals(hotel_name.getAttribute("value"), "Hotel Creek");
+        WebElement location_name = webDriver.findElement(By.id("location_dis"));
+        assertEquals(location_name.getAttribute("value"), "Sydney");
+        WebElement room_numbers = webDriver.findElement(By.id("room_num_dis"));
+        assertEquals(room_numbers.getAttribute("value"), "2 Room(s)");
+        WebElement total_days = webDriver.findElement(By.id("total_days_dis"));
+        assertEquals(total_days.getAttribute("value"), "1 Day(s)");
+        WebElement room_type = webDriver.findElement(By.id("room_type_dis"));
+        assertEquals(room_type.getAttribute("value"), "Standard");
+        WebElement price_per_night = webDriver.findElement(By.id("price_night_dis"));
+        assertEquals(price_per_night.getAttribute("value"), "AUD $ 125");
+        WebElement price_excl_gst = webDriver.findElement(By.id("total_price_dis"));
+        assertEquals(price_excl_gst.getAttribute("value"), "AUD $ 250");
+    }
 }

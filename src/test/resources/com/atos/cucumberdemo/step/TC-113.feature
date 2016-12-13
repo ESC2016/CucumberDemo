@@ -1,5 +1,6 @@
 Feature: TC-113
   TC113
+  Details
 
   To verify whether the data displayed is same as the selected data in Book hotel page
   1. Launch hotel reservation application using URL as in test data.
